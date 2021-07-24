@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Good Thymes Virtual Grocery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+	<div class="container">
+		<h1>Corona Virus Tracker Application</h1>
+		<p>This application lists the total number of cases across the
+			globe</p>
+
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4" th:text="${totalNumberOfCases}"></h1>
+				<p class="lead">This is the total cases so far recorded</p>
+				<hr class="my-4">
+				<p class="lead"> 
+				<span th:text="${totalNumberIncreasedOfCases}"></span>
+				<span><br>This is increased count since yesterday</span>	
+				</p>
+			</div>
+		</div>
+			<table class="table">
+				<tr>
+					<th>State</th>
+					<th>Country</th>
+					<th>Total</th>
+					<th>Increased in 24 hours</th>
+
+				</tr>
+				<tr th:each="locationStats : ${allStats}">
+					<td th:text="${locationStats.state}"></td>
+					<td th:text="${locationStats.country}"></td>
+					<td th:text="${locationStats.latestTotalCases}">0</td>
+					<td th:text="${locationStats.diffFromPrevDay}">0</td>
+				</tr>
+			</table>
+		</div>
+</body>
+
+</html>
