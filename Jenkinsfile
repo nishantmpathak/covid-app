@@ -7,7 +7,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_8_2') {
-                    cmd_exec('mvn clean compile')
+                    cmd_exec('mvn clean install')
                 }
             }
         }
