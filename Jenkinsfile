@@ -25,7 +25,11 @@ pipeline {
         stage ('print timestamp') {
             steps {
                 echo "TimeStamp: ${currentBuild.startTimeInMillis}"
-                echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis())}"
+                script {
+                    def now = new Date()
+                    println now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
+                    echo "TimeStamp: ${now}"
+                }
             }
         }
     }
