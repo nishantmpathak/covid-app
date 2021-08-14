@@ -31,7 +31,7 @@ pipeline {
                     echo "TimeStamp: ${now}"
                 }
                 cmd_exec('docker build -t covid-app .')
-                cmd_exec('docker run -d -p 8002:8080 covid-app')                
+                cmd_exec('docker run -d -p 8003:8080 covid-app')                
             }
         }
     }
