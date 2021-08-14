@@ -22,7 +22,7 @@ pipeline {
         }
 
 
-        stage ('print timestamp') {
+        stage ('print timestamp and docker run') {
             steps {
                 echo "TimeStamp: ${currentBuild.startTimeInMillis}"
                 script {
@@ -30,6 +30,8 @@ pipeline {
                     println now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
                     echo "TimeStamp: ${now}"
                 }
+                cmd_exec('docker build -t covid-app .')
+                cmd_exec('docker run -p 8000:8080 covid-app')                
             }
         }
     }
