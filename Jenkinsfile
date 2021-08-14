@@ -22,11 +22,10 @@ pipeline {
         }
 
 
-        stage ('Deployment Stage') {
+        stage ('print timestamp') {
             steps {
-                withMaven(maven : 'maven_3_8_2') {
-                    cmd_exec('mvn deploy')
-                }
+                echo "TimeStamp: ${currentBuild.startTimeInMillis}"
+                echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis())}"
             }
         }
     }
