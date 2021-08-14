@@ -1,12 +1,13 @@
 pipeline {
     agent any
+    
 
     stages {
         stage ('Compile Stage') {
 
             steps {
                 withMaven(maven : 'maven_3_8_2') {
-                    sh 'mvn clean compile'
+                    cmd_exec('mvn clean compile')
                 }
             }
         }
@@ -15,7 +16,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_8_2') {
-                    sh 'mvn test'
+                     cmd_exec('mvn test')
                 }
             }
         }
@@ -24,9 +25,13 @@ pipeline {
         stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'maven_3_8_2') {
-                    sh 'mvn deploy'
+                    cmd_exec('mvn deploy')
                 }
             }
         }
     }
+}
+
+def cmd_exec(command) {
+    return bat(returnStdout: true, script: "${command}").trim()
 }
